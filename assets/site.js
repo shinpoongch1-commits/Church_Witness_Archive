@@ -23,7 +23,7 @@
   if (side) {
     var app = document.getElementById("app"), box = document.createElement("div");
     box.className = "wrap with-side";
-    var here = location.pathname.split("/").pop() || "index.html";   /* 1009: 지금 보는 페이지 */
+    var here = (location.pathname.split("/").pop() || "index.html") + decodeURIComponent(location.search);   /* 1009: 지금 보는 페이지 (1012: people.html?p=이름 처럼 ? 뒤까지) */
     function a(h, t) { return '<a href="' + h + '"' + (h === here ? ' class="on" aria-current="page"' : "") + ">" + t + "</a>"; }
     box.innerHTML = '<button class="side-btn" type="button">목차 ▾</button><aside class="side">' + side.map(function (g) {
       var inG = g.href === here || g.items.some(function (i) { return i.href === here; });   /* 1009: 지금 있는 묶음 */
@@ -54,13 +54,14 @@
     js.onerror = function () { done(null); };
     document.head.appendChild(js);
   }
-  function intvw(d) {
+  function intvw(d, fold) {   /* 1012 fold: 인물 페이지에서 번호마다 접기·펼치기(처음엔 모두 접힘), 모달은 그대로 */
     return "<h1>" + esc(d.title) + "</h1>" + (d.note ? '<p class="doc-note">' + esc(d.note) + "</p>" : "") +
       d.sections.map(function (s, i) {
-        return '<h2><span class="sec-num">' + (i + 1) + ".</span> " + esc(s.title) + "</h2>" + s.qa.map(function (x) {
+        var h = '<h2><span class="sec-num">' + (i + 1) + ".</span> " + esc(s.title) + "</h2>", qa = s.qa.map(function (x) {
           var q = x.q !== undefined;
           return '<p class="' + (q ? "q" : "a") + '"><span class="tag">' + (q ? "문" : "답") + "</span>" + esc(q ? x.q : x.a) + "</p>";
         }).join("");
+        return fold ? '<details class="grp"><summary>' + h + "</summary>" + qa + "</details>" : h + qa;
       }).join("");
   }
   function step(s) { /* 시기 "1941년경(8세)" → 큰 글씨 1941년경 + 작은 글씨 (8세) / 내용 "제목 — 설명 — 설명" → 제목 + 불릿 */
@@ -113,4 +114,5 @@
     if (e.target.classList.contains("modal") || e.target.closest(".modal-x")) close();
   });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  S.view = { load: load, intvw: intvw, person: person };   /* 1012: 인물 페이지(page-people.js)가 모달과 같은 모양으로 그릴 때 씀 */
 })();

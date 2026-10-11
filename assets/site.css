@@ -263,3 +263,9 @@ a.ch.p:hover,a.ch.p:focus-visible{background:var(--chip-p-bg-on);border-color:tr
 .yt-span.clamp a.ch .t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}   /* 병합 칸 중 clamp 인 칸: 칩 글을 2줄까지만 (누르면 증언 카드에 전문) */
 .go{font-size:13px;color:var(--soft);white-space:nowrap}.go:hover{color:var(--accent)} /*1012 바로가기 링크 (원문 보기와 같은 결)*/
 span.who{border-bottom:0}span.who:hover{opacity:1} /*1012 누르지 않는 이름(질문자 설명)은 밑줄 없이*/
+.modal-body.on-page{overflow:visible;padding:20px 0 0} /*1012 인물 페이지: 모달과 같은 모양을 쓰려고 modal-body를 함께 씀(스크롤·여백만 페이지에 맞춤)*/
+.on-page .grp summary{padding:20px 0}.on-page .grp[open]{padding-bottom:16px}.on-page .grp[open] summary{padding-bottom:12px} /*1012 인물 페이지 문답: 번호마다 접기·펼치기*/
+.on-page .grp h2{margin:0;padding:0;border:0;font-size:17px;color:var(--ink)}
+.dl{font:600 15px var(--font);padding:8px 22px;border:1px solid var(--vt-on-bg);border-radius:4px;background:var(--vt-on-bg);color:var(--vt-on-ink);cursor:pointer} /*1012 인물 페이지 다운로드 버튼*/
+.print-only{display:none}
+@media print{body>*{display:none!important}body>.print-only{display:block!important;padding:0}.print-only .tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}} /*1012 PDF로 저장: 문답만 인쇄*/

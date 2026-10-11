@@ -24,12 +24,31 @@ window.SITE = {
         { title: "신풍교회", href: "shinpung.html", items: [{ name: "백영희 목사와 인연", href: "shinpung_paik.html" }, { name: "총공회 소속 변경", href: "shinpung_split.html" }] }
       ] },
     { id: "timeline", name: "연대기",            href: "timeline.html" },
-    { id: "people", name: "인물",            href: "people.html" },
+    { id: "people", name: "인물·증언",            href: "people.html",
+      /* 1012 인물: 이름 가나다순. 페이지는 people.html?p=이름 하나로 그림 (내용은 data/people/이름.js, data/intvw/이름.js) — href를 넣으면 연결 */
+      side: [
+        { title: "증언자", href: "people.html", items: [{ name: "강위상", href: "people.html?p=강위상" },
+          { name: "류우열", href: "people.html?p=류우열" },
+          { name: "문순금", href: "people.html?p=문순금" },
+          { name: "박창호", href: "people.html?p=박창호" },
+          { name: "손활인", href: "people.html?p=손활인" },
+          { name: "심보라", href: "people.html?p=심보라" },
+          { name: "오동원", href: "people.html?p=오동원" },
+          { name: "유완종", href: "people.html?p=유완종" },
+          { name: "이길수", href: "people.html?p=이길수" },
+          { name: "이진석", href: "people.html?p=이진석" },
+          { name: "차병용", href: "people.html?p=차병용" },
+          { name: "차상희", href: "people.html?p=차상희" },
+          { name: "차요한", href: "people.html?p=차요한" },
+          { name: "차진후", href: "people.html?p=차진후" } ] }
+      ] },
     { id: "archive",  name: "자료실",            href: "archive.html" }
     
   ],
   /* 1001 추가: 모달이 읽는 자료 위치 ({name} 자리에 이름이 들어감) */
   source: { intvw: "data/intvw/{name}.js", people: "data/people/{name}.js" },
+  /* 1012 인물 페이지 제목·소개글 */
+  people: { title: "인물 정보·증언", lede: "증언자의 인적 사항과 신앙 걸음을 볼 수 있습니다." },
   footer: { addr: "전남 여수 여순로 419-5", email: "pkist.net@gmail.com" },
   home: {
     eyebrow: "구술사료로 되짚는 성광교회의 시작",
