@@ -19,7 +19,10 @@ window.SITE = {
         { title: "성광·성암 착공·준공", href: "seongkwang_order.html", items: [/*{ name: "돌 예배당 착공·준공", href: "seongkwang_order.html" }*/ ] },
         { title: "남문교회", href: "seongkwang_nammun.html", items: [] }
       ] },
-    { id: "sinpung",   name: "신풍교회",              href: "sinpung.html" },
+    { id: "shinpung", name: "신풍교회",            href: "shinpung.html",
+      side: [
+        { title: "신풍교회", href: "shinpung.html", items: [{ name: "백영희 목사와 인연", href: "shinpung_paik.html" }, { name: "총공회 소속 변경", href: "shinpung_split.html" }] }
+      ] },
     { id: "timeline", name: "연대기",            href: "timeline.html" },
     { id: "people", name: "인물",            href: "people.html" },
     { id: "archive",  name: "자료실",            href: "archive.html" }
@@ -38,8 +41,8 @@ window.SITE = {
     cards: [
       { title: "손양원 목사", desc: "애양원, 순교",                   more: "자세히 보기",     href: "sohn.html" },
       { title: "정양순 사모", desc: "애양원과 분리, 가정예배와 개척", more: "관련 증언 보기", href: "jeong.html" },
-      { title: "성광 교회",   desc: "정양순 사모의 개척 교회",        more: "관련 증언 보기", href: "seongkwang.html" },
-      { title: "신풍 교회",   desc: "예수교장로회한국총공회 소속",    more: "관련 증언 보기", href: "history.html?id=7" }
+      { title: "성광교회",    desc: "정양순 사모의 개척 교회",        more: "관련 증언 보기", href: "seongkwang.html" },
+      { title: "신풍교회",    desc: "예수교장로회한국총공회 소속",    more: "관련 증언 보기", href: "shinpung.html" }
     ]
   }
 };

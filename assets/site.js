@@ -9,12 +9,14 @@
   document.body.insertAdjacentHTML("beforeend",
     '<footer>주소 : ' + S.footer.addr + '<span class="sep">|</span>대표 이메일 : <a href="mailto:' +
     S.footer.email + '">' + S.footer.email + "</a></footer>");
-  /* 0930 추가: 이미지 크게 보기 (class="zoom" 이미지를 누르면 크게, 아무 데나 누르면 닫힘) */
+  /* 0930 추가: 이미지 크게 보기 (class="zoom" 이미지나 data-zoom 링크를 누르면 크게, 아무 데나 누르면 닫힘) */
   document.addEventListener("click", function (e) {
     var box = document.querySelector(".zoom-box");
     if (box) { box.remove(); return; }
-    if (e.target.classList.contains("zoom"))
-      document.body.insertAdjacentHTML("beforeend", '<div class="zoom-box"><img src="' + e.target.src + '" alt=""></div>');
+    var z = e.target.closest("[data-zoom]");   /* 1012: 글 링크(data-zoom="사진 경로")로도 사진 크게 */
+    if (z) e.preventDefault();
+    if (z || e.target.classList.contains("zoom"))
+      document.body.insertAdjacentHTML("beforeend", '<div class="zoom-box"><img src="' + (z ? z.getAttribute("data-zoom") : e.target.src) + '" alt=""></div>');
   });
   /* 0930 추가: 좌측 메뉴 (현재 상단 메뉴에 side가 있을 때만 그림, 내용은 data/site.js) */
   var side = (S.menu.filter(function (m) { return m.id === cur; })[0] || {}).side;

@@ -10,11 +10,18 @@
       "<small>원문 보기 →</small></a>";
   }
   function ask(t) { return '<p class="ask"><b>' + asker + "</b>: " + t + "</p>"; }
-  function who(s) { return '<a class="who js-modal" href="#" data-person="' + s.who + '">' + (s.label || s.who) + "</a>"; }
+  function who(s) {   // (1012) in: 다른 사람 원문에 실린 말(질문자 설명 등) → 이름은 누르지 않음
+    if (s.in) return '<span class="who">' + (s.label || s.who) + "</span>";
+    return '<a class="who js-modal" href="#" data-person="' + s.who + '">' + (s.label || s.who) + "</a>";
+  }
+  function doc(s) {   // (1012) 문헌 블록: 이름(문헌 제목) → 원문(새 창), 블록 → 사진 크게
+    return '<div class="say"><a class="who" href="' + s.link + '" target="_blank" rel="noopener">' + s.label + '</a><a class="quote" href="#" data-zoom="' + s.zoom + '">' +
+      s.text + "<small>사진 보기 →</small></a></div>";
+  }
   function set(s) {   // 대화 세트: 질문과 답이 오간 순서 그대로 한 덩어리
     return '<div class="say">' + who(s) + s.set.map(function (x) {
       if (x.note) return '<p class="note">' + x.note + "</p>";
-      return (x.ask ? ask(x.ask) : "") + quote({ who: s.who, text: x.text, find: x.find });
+      return (x.ask ? ask(x.ask) : "") + quote({ who: s.in || s.who, text: x.text, find: x.find });
     }).join("") + "</div>";
   }
   function items(list) {
@@ -24,6 +31,7 @@
       if (g.ask) h += ask(g.ask);
       g.list.sort(function (a, b) { return (a.who || "").localeCompare(b.who || "", "ko"); });
       g.list.forEach(function (s, i) {
+        if (s.zoom) { h += doc(s); return; }
         if (s.set) { h += set(s); return; }
         var p = g.list[i - 1];
         if (p && !p.set && p.who === s.who) { h = h.slice(0, -6) + quote(s) + "</div>"; return; }   // 같은 증언자 연속

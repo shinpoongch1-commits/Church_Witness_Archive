@@ -261,3 +261,5 @@ a.ch.p:hover,a.ch.p:focus-visible{background:var(--chip-p-bg-on);border-color:tr
 .yt-span.mid{justify-content:center}   /* 병합 칸 중 mid: true 인 칸만 세로 가운데 */
 .yt-span.clamp a.ch{display:inline-flex;align-items:flex-end}
 .yt-span.clamp a.ch .t{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}   /* 병합 칸 중 clamp 인 칸: 칩 글을 2줄까지만 (누르면 증언 카드에 전문) */
+.go{font-size:13px;color:var(--soft);white-space:nowrap}.go:hover{color:var(--accent)} /*1012 바로가기 링크 (원문 보기와 같은 결)*/
+span.who{border-bottom:0}span.who:hover{opacity:1} /*1012 누르지 않는 이름(질문자 설명)은 밑줄 없이*/
