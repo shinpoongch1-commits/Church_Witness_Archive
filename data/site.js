@@ -10,8 +10,8 @@ window.SITE = {
     { id: "jeong",    name: "정양순 사모",       href: "jeong.html",
       /* 좌측 메뉴(side): 이 메뉴에 속한 페이지(data-page="jeong")에 나타남. href 없는 항목은 흐리게 표시 */
       side: [
-        { title: "정양순 사모", href: "jeong.html", items: [{ name: "애양원", href: "jeong_aeyang.html" }, { name: "경제", href: "jeong_economy.html" }] },
-        { title: "정양순 사모 개척", items: [{ name: "사택위치", href: "jeong_loca.html" }, { name: "가정예배", href: "jeong_service.html" }, { name: "에피소드", href: "jeong_episodes.html" }] }
+        { title: "정양순 사모", href: "jeong.html", items: [{ name: "애양원", href: "jeong_aeyang.html" }, { name: "경제", href: "jeong_economy.html" } ] },
+        { title: "정양순 사모 개척", items: [{ name: "신앙의 조력자", href: "jeong_supporter.html" }, { name: "사택위치", href: "jeong_loca.html" }, { name: "가정예배", href: "jeong_service.html" }, { name: "에피소드", href: "jeong_episodes.html" }] }
       ] },
     { id: "seongkwang", name: "성광교회",           href: "seongkwang.html",
       side: [

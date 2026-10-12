@@ -16,7 +16,7 @@
     for (var k = 0; k < tabs.length; k++) tabs[k].className = k === i ? "on" : "";
     if (i === 2) {
       box.innerHTML = '<p class="desc">' + name + ' 문답(증언 원문)을 내려받습니다. PDF는 인쇄 창이 열리면 대상에서 ‘PDF로 저장’을 고르세요.</p>' +
-        '<button type="button" class="dl">PDF</button> <button type="button" class="dl">Word(.docx)</button> <button type="button" class="dl">텍스트(.txt)</button>';
+        '<div class="dls"><button type="button" class="dl">PDF</button><button type="button" class="dl">Word(.docx)</button><button type="button" class="dl">텍스트(.txt)</button></div>';
       var b = box.querySelectorAll(".dl");
       b[0].onclick = pdf; b[1].onclick = function () { file("docx"); }; b[2].onclick = function () { file("txt"); };
       return;

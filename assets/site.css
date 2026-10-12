@@ -71,6 +71,22 @@ footer .sep{margin:0 10px;color:var(--line)}
 .tbl td.ev li{margin-bottom:6px;color:#3D3C38}
 .tbl td.ev li:last-child{margin-bottom:0}
 .tbl td.ev b{margin-right:6px;color:var(--ink);font-weight:600}
+/* 1012 손양원 표 모바일 카드 (page-sohn.js) — PC는 표, 760px 이하는 카드 */
+.tbl-m{display:none;margin:0;padding:0;list-style:none}
+.tbl-m .m-sohn{margin:18px 0 8px;padding:8px 14px;background:var(--card-on);border-radius:6px}
+.tbl-m .m-sohn:first-child{margin-top:0}
+.tbl-m .m-sohn strong{display:block;color:var(--accent);font-size:14px}
+.tbl-m .m-sohn span{font-size:13px;color:var(--soft)}
+.tbl-m .m-row{margin-top:8px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:6px;font-size:14px;line-height:1.7}
+.tbl-m .m-row.in{border-left:3px solid var(--accent)}
+.tbl-m .m-period{margin-right:8px;font-size:15px}
+.tbl-m .m-row div{margin-top:4px;color:var(--soft);font-size:12px}
+.tbl-m .m-head{margin:8px 0 0;color:var(--soft);font-size:13px}
+.tbl-m ul{margin:8px 0 0;padding:8px 0 0;list-style:none;border-top:1px solid var(--line)}
+.tbl-m ul li{margin-bottom:6px}
+.tbl-m ul li:last-child{margin-bottom:0}
+.tbl-m ul b{margin-right:6px;font-weight:600}
+@media (max-width:760px){.tbl{display:none}.tbl-m{display:block}}
 .note,.src{color:var(--soft);font-size:13px}
 .src{margin:12px 0 0;text-align:right}
 .story h3{margin:28px 0 8px;font-size:17px}
@@ -184,9 +200,9 @@ footer .sep{margin:0 10px;color:var(--line)}
 .story .lv2{margin-left:1.5em}
 .story .lv3{margin-left:3em}
 .grp{border-bottom:1px solid var(--line)}
-.grp summary{display:flex;align-items:center;justify-content:space-between;padding:28px 0;cursor:pointer;list-style:none}
+.grp summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:28px 0;cursor:pointer;list-style:none}
 .grp summary::-webkit-details-marker{display:none}
-.grp summary::after{content:"펼치기 +";font-size:13px;color:var(--soft)}
+.grp summary::after{content:"펼치기 +";flex-shrink:0;font-size:13px;color:var(--soft)}
 .grp[open] summary::after{content:"접기 −"}
 .grp[open] summary{padding-bottom:0}
 .grp summary h2{margin:0;font-size:20px;color:var(--brown)}
@@ -269,3 +285,4 @@ span.who{border-bottom:0}span.who:hover{opacity:1} /*1012 누르지 않는 이�
 .dl{font:600 15px var(--font);padding:8px 22px;border:1px solid var(--vt-on-bg);border-radius:4px;background:var(--vt-on-bg);color:var(--vt-on-ink);cursor:pointer} /*1012 인물 페이지 다운로드 버튼*/
 .print-only{display:none}
 @media print{body>*{display:none!important}body>.print-only{display:block!important;padding:0}.print-only .tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}} /*1012 PDF로 저장: 문답만 인쇄*/
+.dls{display:flex;flex-wrap:wrap;gap:8px} /*1012 다운로드 버튼 묶음: 줄이 바뀌어도 위아래 간격 유지*/
