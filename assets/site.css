@@ -170,7 +170,8 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 @media (max-width:760px){
   .wrap{padding:0 20px}
   .top{flex-direction:column;gap:12px}
-  nav{flex-wrap:wrap;gap:8px 18px}
+  nav{display:grid;width:100%;grid-template-columns:repeat(4,auto);justify-content:space-between;gap:8px 8px} /*1013 모바일 메뉴: 4칸 격자, 둘째 줄 '인물·증언'은 '손양원 목사' 아래(2칸)*/
+  nav a{justify-self:start;white-space:nowrap}nav a:nth-child(6){grid-column:2}
   .top{padding-top:16px;padding-bottom:12px} /*1013 모바일: 메뉴~머리글 간격 줄임*/
   .hero{grid-template-columns:1fr;gap:28px;padding:20px 0 32px}
   .eyebrow{margin-bottom:6px}.hero h1{font-size:22pt}
@@ -184,6 +185,7 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
   .side-open .side{display:block}
   .side-btn{display:block;margin-top:20px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:4px;font:600 14px var(--font);color:var(--ink);text-align:left}
 }
+@media (max-width:350px){nav{font-size:14px}} /*1013 아주 좁은 휴대폰: 메뉴 4칸이 한 줄에 들어가게*/
 
 /* 1001 추가: 증언 페이지 (page-testi.js) */
 .say+.say{margin-top:32px} /*한 제목 아래 증언 여러 개일 때 간격*/
