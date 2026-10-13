@@ -1,6 +1,6 @@
 /* 인물 페이지 (people.html?p=이름): 제목·소개글 → [인적사항] [증언] [다운로드] 탭
    좌측 이름 목록은 data/site.js의 인물 side, 제목·소개글은 data/site.js의 people
-   내용은 모달과 같은 원본·같은 모양 (인적사항 = data/people/이름.js, 증언 = data/intvw/이름.js, 증언은 번호마다 접기·펼치기)
+   내용은 모달과 같은 원본·같은 모양 (인적사항 = data/people/영문이름.js, 증언 = data/intvw/영문이름.js, 증언은 번호마다 접기·펼치기)
    다운로드 = 증언(문답) 원문만: PDF(브라우저 인쇄 창의 'PDF로 저장') / Word(.docx)·텍스트(.txt)는 바로 받음, 파일 이름은 "이름 문답"
    ?p= 가 없으면(people.html) 목록의 첫 사람을 보여 줌 */
 (function () {
@@ -36,7 +36,7 @@
       window.print();
     });
   }
-  function file(kind) {   /* Word·텍스트: 원문(data/intvw/이름.js)으로 그 자리에서 파일을 만들어 받음 */
+  function file(kind) {   /* Word·텍스트: 원문(data/intvw/영문이름.js)으로 그 자리에서 파일을 만들어 받음 */
     V.load("intvw", name, function (d) {
       if (!d) return;
       var lines = [["h1", d.title]].concat(d.note ? [["note", d.note]] : []);

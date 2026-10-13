@@ -1,7 +1,7 @@
 /* 성광교회 건축 — 전국모금 (원고: 신풍 > files > c_intvw > seongkwang_info > sk_fund.docx)
    묶음 = { title, items: [ 증언, 증언, … ] }  ← title이 없으면 소제목 없이 표시
    증언 = { ask(질문), who(자료 이름), label(화면 이름, 없으면 who), text(증언), find(원문에서 찾을 문구) }
-   find는 인터뷰 원문(data/intvw/이름.js)에 그대로 있는 짧은 문구여야 그 지점으로 이동합니다 */
+   find는 인터뷰 원문(data/intvw/영문이름.js)에 그대로 있는 짧은 문구여야 그 지점으로 이동합니다 */
 window.PAGE = {
   title: "전국 모금 운동",
   lede: "정양순 사모가 예배당 건축을 위해 전국 모금을 다녔다는 진술입니다.",

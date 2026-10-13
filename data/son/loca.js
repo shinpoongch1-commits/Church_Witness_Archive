@@ -1,7 +1,7 @@
 /* 손양원 목사 생전 — 사택 위치 (원고: 신풍 > files > 핵심_인터뷰 > sohn_info > bf_loca.docx)
    묶음 = { title, items: [ 증언, 증언, … ] }  ← 한 제목 아래 증언을 여러 개 둘 수 있음
    증언 = { ask(질문), who(자료 이름), label(화면 이름, 없으면 who), text(증언), find(원문에서 찾을 문구) }
-   find는 인터뷰 원문(data/intvw/이름.js)에 그대로 있는 짧은 문구여야 그 지점으로 이동합니다 */
+   find는 인터뷰 원문(data/intvw/영문이름.js)에 그대로 있는 짧은 문구여야 그 지점으로 이동합니다 */
 window.PAGE = {
   title: "사택 위치",
   asker: "이영인(질문자)",

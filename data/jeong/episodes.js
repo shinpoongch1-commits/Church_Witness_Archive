@@ -1,7 +1,7 @@
 /* 정양순 사모 개척 — 에피소드 (원고: 신풍 > files > c_intvw > jeong_info > af_episodes.docx)
    묶음 = { title, items: [ 증언, 증언, … ] }  ← 한 제목 아래 증언을 여러 개 둘 수 있음
    증언 = { ask(질문), who(자료 이름), label(화면 이름, 없으면 who), text(증언), find(원문에서 찾을 문구) }
-   find는 인터뷰 원문(data/intvw/이름.js)에 그대로 있는 짧은 문구여야 그 지점으로 이동합니다 */
+   find는 인터뷰 원문(data/intvw/영문이름.js)에 그대로 있는 짧은 문구여야 그 지점으로 이동합니다 */
 window.PAGE = {
   title: "에피소드",
   lede: "정양순 사모의 평소 교인과 목회자를 대하는 모습과 엄격한 주일 성수의 모습에 관한 진술 내용입니다.",

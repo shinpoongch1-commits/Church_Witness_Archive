@@ -39,6 +39,7 @@ h1{margin:0 0 20px;font-size:20pt;font-weight:700;line-height:1.4}/*font-size:16
 .hero h1{margin-bottom:10px;font-size:24pt}
 .hero .motto{margin:0 0 22px;font-size:17px;font-weight:600;color:var(--accent);line-height:1.6}
 .hero .lede{max-width:none}
+.hero h1 .nw{white-space:nowrap} /*1013 제목은 쉼표에서만 줄바꿈('한 길’'이 떨어지지 않게)*/
 .hero img{filter:var(--photo-tone)}
 figure{margin:0}
 figure img{width:100%;display:block;border:1px solid var(--line)}
@@ -170,7 +171,9 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
   .wrap{padding:0 20px}
   .top{flex-direction:column;gap:12px}
   nav{flex-wrap:wrap;gap:8px 18px}
-  .hero{grid-template-columns:1fr;gap:28px;padding:32px 0}
+  .top{padding-top:16px;padding-bottom:12px} /*1013 모바일: 메뉴~머리글 간격 줄임*/
+  .hero{grid-template-columns:1fr;gap:28px;padding:20px 0 32px}
+  .eyebrow{margin-bottom:6px}.hero h1{font-size:22pt}
   .scenes li{grid-template-columns:1fr;gap:6px;padding-bottom:20px}.scenes li:before,.scenes li:after{display:none}.scenes .when{padding:0;text-align:left;font-size:14px}.scenes .when small{display:inline;margin-left:6px}.card{margin-left:0} /*1013 메인 모바일: 시기를 카드 위로*/
   .qs{grid-template-columns:1fr}
   .flow{flex-direction:column;align-items:stretch}.flow i{text-align:center;line-height:1}

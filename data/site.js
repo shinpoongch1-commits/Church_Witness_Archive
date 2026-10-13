@@ -25,7 +25,7 @@ window.SITE = {
       ] },
     /* 1013 연대기(timeline.html) 메뉴 삭제 */
     { id: "people", name: "인물·증언",            href: "people.html",
-      /* 1012 인물: 이름 가나다순. 페이지는 people.html?p=이름 하나로 그림 (내용은 data/people/이름.js, data/intvw/이름.js) — href를 넣으면 연결 */
+      /* 1012 인물: 이름 가나다순. 페이지는 people.html?p=이름 하나로 그림 (내용은 data/people/영문이름.js, data/intvw/영문이름.js) — href를 넣으면 연결 */
       side: [
         { title: "증언자", href: "people.html", items: [{ name: "강위상", href: "people.html?p=강위상" },
           { name: "류우열", href: "people.html?p=류우열" },
@@ -68,7 +68,7 @@ window.SITE = {
   },
   /* 1012 인물 페이지 제목·소개글 */
   people: { title: "인물 정보·증언", lede: "증언자와 질문자의 인적 사항과 신앙 걸음을 볼 수 있습니다." },
-  /* 1013 질문자 이름: 질문 줄·원문 안내·인물 정보 참고에서 이 이름을 누르면 인물 정보(data/people/이영인.js)가 열림 */
+  /* 1013 질문자 이름: 질문 줄·원문 안내·인물 정보 참고에서 이 이름을 누르면 인물 정보(data/people/lee-youngin.js)가 열림 */
   asker: "이영인",
   /* footer: credit = 1013 모든 페이지 맨 아래 만든 이 한 줄 (이름·주소 링크는 <a>로 직접) */
   footer: { addr: "전남 여수 여순로 419-5", email: "pkist.net@gmail.com",

@@ -37,8 +37,8 @@
   }
 })();
 /* 1001 추가: 원문·인물 모달
-   <a class="js-modal" href="#" data-intvw="이름" data-find="찾을 문구"> → 인터뷰 원문 (data/intvw/이름.js)
-   <a class="js-modal" href="#" data-person="이름">                  → 인물 정보 (data/people/이름.js)
+   <a class="js-modal" href="#" data-intvw="이름" data-find="찾을 문구"> → 인터뷰 원문 (data/intvw/영문이름.js)
+   <a class="js-modal" href="#" data-person="이름">                  → 인물 정보 (data/people/영문이름.js)
    어느 페이지든 붙이기만 하면 작동. 파일 위치 규칙은 data/site.js의 source */
 (function () {
   var S = window.SITE;
