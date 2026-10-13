@@ -7,7 +7,7 @@
   document.body.insertAdjacentHTML("afterbegin",
     '<div class="head"><div class="wrap"><header class="top"><nav>' + nav + "</nav></header></div></div>");
   document.body.insertAdjacentHTML("beforeend",
-    '<footer>주소 : ' + S.footer.addr + '<span class="sep">|</span>대표 이메일 : <a href="mailto:' +
+    '<footer>' + (S.footer.credit ? '<p class="credit">' + S.footer.credit + "</p>" : "") + '주소 : ' + S.footer.addr + '<span class="sep">|</span>대표 이메일 : <a href="mailto:' +
     S.footer.email + '">' + S.footer.email + "</a></footer>");
   /* 0930 추가: 이미지 크게 보기 (class="zoom" 이미지나 data-zoom 링크를 누르면 크게, 아무 데나 누르면 닫힘) */
   document.addEventListener("click", function (e) {
@@ -44,18 +44,22 @@
   var S = window.SITE;
   function esc(t) { return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
   function fn(t) { return esc(t).replace(/\[(\d+)\]/g, "<sup>$1</sup>"); } /* [1] → 각주 번호 */
+  function ask(h, me) {   /* 1013: 질문자 이름(data/site.js의 asker) → 인물 정보 링크 (자기 정보 안에서는 그대로) */
+    return S.asker && me !== S.asker ? h.split(S.asker).join('<a class="js-modal" href="#" data-person="' + S.asker + '">' + S.asker + "</a>") : h;
+  }
+  function url(h) { return h.replace(/\b([a-z0-9-]+\.(?:net|com|org|kr))\b/gi, '<a href="https://$1" target="_blank" rel="noopener">$1</a>'); }   /* 1013: pkist.net 같은 주소 → 새 창 링크 */
   function flat(t) { return (t || "").replace(/\s+/g, " ").trim(); }
   function load(kind, name, done) { /* 한 번 불러온 자료는 다시 받지 않음 */
     var box = kind === "intvw" ? "INTVW" : "PEOPLE";
     if (window[box] && window[box][name]) return done(window[box][name]);
     var js = document.createElement("script");
-    js.src = S.source[kind].replace("{name}", name);
+    js.src = S.source[kind].replace("{name}", S.files[name] || name);   /* 1013: 영문 파일 이름 (data/site.js의 files) */
     js.onload = function () { done(window[box] && window[box][name]); };
     js.onerror = function () { done(null); };
     document.head.appendChild(js);
   }
   function intvw(d, fold) {   /* 1012 fold: 인물 페이지에서 번호마다 접기·펼치기(처음엔 모두 접힘), 모달은 그대로 */
-    return "<h1>" + esc(d.title) + "</h1>" + (d.note ? '<p class="doc-note">' + esc(d.note) + "</p>" : "") +
+    return "<h1>" + esc(d.title) + "</h1>" + (d.note ? '<p class="doc-note">' + ask(esc(d.note)) + "</p>" : "") +
       d.sections.map(function (s, i) {
         var h = '<h2><span class="sec-num">' + (i + 1) + ".</span> " + esc(s.title) + "</h2>", qa = s.qa.map(function (x) {
           var q = x.q !== undefined;
@@ -69,14 +73,17 @@
     if (m && !m[1].trim()) { big = m[2] + m[3]; small = ""; }
     var t = s.t.split(" — ");
     return '<li><div class="t-when"><b>' + fn(big.trim()) + "</b>" + (small ? "<small>" + fn(small) + "</small>" : "") + "</div>" +
-      '<div class="t-what"><strong>' + fn(t[0]) + "</strong>" +
-      t.slice(1).map(function (x) { return '<span class="t-pt">' + fn(x) + "</span>"; }).join("") + "</div></li>";
+      '<div class="t-what"><strong>' + me(t[0]) + "</strong>" +
+      t.slice(1).map(function (x) { return '<span class="t-pt">' + me(x) + "</span>"; }).join("") + "</div></li>";
   }
+  var cur = "";   /* 지금 그리는 인물 이름 (자기 이름은 링크하지 않음) */
+  function me(t) { return url(ask(fn(t), cur)); }
   function person(d) {
-    return "<h1>" + esc(d.name) + '</h1><p class="role-line">' + esc(d.group) + " · 녹취일: " + esc(d.recorded) + "</p>" +
+    cur = d.name;
+    return "<h1>" + esc(d.name) + '</h1><p class="role-line">' + esc(d.group) + (d.recorded ? " · 녹취일: " + esc(d.recorded) : "") + "</p>" +
       '<p class="lede">' + esc(d.lede) + '</p><h2>신앙 걸음</h2><ul class="timeline-list">' +
       d.steps.map(step).join("") + "</ul>" +
-      (d.notes.length ? '<h2>참고</h2><div class="notes">' + d.notes.map(function (n) { return "<p>" + fn(n) + "</p>"; }).join("") + "</div>" : "");
+      (d.notes.length ? '<h2>참고</h2><div class="notes">' + d.notes.map(function (n) { return "<p>" + me(n) + "</p>"; }).join("") + "</div>" : "");
   }
   function close() {
     var m = document.querySelector(".modal");
@@ -106,7 +113,7 @@
       var kind = a.hasAttribute("data-intvw") ? "intvw" : "people";
       var name = a.getAttribute(kind === "intvw" ? "data-intvw" : "data-person");
       load(kind, name, function (d) {
-        if (!d) return show('<p class="note">자료를 찾지 못했습니다. (' + S.source[kind].replace("{name}", name) + ")</p>");
+        if (!d) return show('<p class="note">자료를 찾지 못했습니다. (' + S.source[kind].replace("{name}", S.files[name] || name) + ")</p>");
         show(kind === "intvw" ? intvw(d) : person(d), a.getAttribute("data-find"));
       });
       return;
@@ -114,5 +121,5 @@
     if (e.target.classList.contains("modal") || e.target.closest(".modal-x")) close();
   });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
-  S.view = { load: load, intvw: intvw, person: person };   /* 1012: 인물 페이지(page-people.js)가 모달과 같은 모양으로 그릴 때 씀 */
+  S.view = { load: load, intvw: intvw, person: person, ask: ask };   /* 1012: 인물 페이지(page-people.js)가 모달과 같은 모양으로 그릴 때 씀 */
 })();

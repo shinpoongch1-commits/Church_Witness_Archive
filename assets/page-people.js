@@ -7,9 +7,10 @@
   var S = window.SITE, V = S.view, D = S.people;
   var first = S.menu.filter(function (m) { return m.id === "people"; })[0].side[0].items[0].name;
   var name = new URLSearchParams(location.search).get("p") || first;
+  var witness = S.menu.filter(function (m) { return m.id === "people"; })[0].side[0].items.some(function (i) { return i.name === name; });   /* 1013: 질문자는 증언 원문이 없어 [인적사항]만 */
   var app = document.getElementById("app");
   app.innerHTML = '<div class="page-head"><h1 class="eyebrow">' + D.title + '</h1><p class="lede">' + D.lede + "</p></div>" +
-    '<section class="sec"><div class="vt"><button type="button">인적사항</button><button type="button">증언</button><button type="button">다운로드</button></div>' +
+    '<section class="sec"><div class="vt"><button type="button">인적사항</button>' + (witness ? '<button type="button">증언</button><button type="button">다운로드</button>' : "") + '</div>' +
     '<div class="modal-body on-page"></div></section>';
   var tabs = app.querySelectorAll(".vt button"), box = app.querySelector(".on-page");
   function show(i) {

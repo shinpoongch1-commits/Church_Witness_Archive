@@ -2,7 +2,7 @@
    번호 체계 1. → (1) → ① : 번호는 데이터에 직접 씁니다 (코드는 번호를 만들지 않음)
    - 큰 제목: story의 title에 "1. 제목"
    - 본문 한 줄이 "(1) "로 시작하면 중간 제목, "① "로 시작하면 작은 제목 → 그 아래 단락은 제목을 따라 들여쓰기
-   사진(photos)·각주(notes)는 없으면 생략. 손양원 목사의 표는 assets/page-sohn.js가 아래에 덧붙임 */
+   사진(photos)·각주(notes)는 없으면 생략. 손양원 목사의 표는 assets/page-son.js가 아래에 덧붙임 */
 (function () {
   var D = window.STORY;
   function fn(t) { return t.replace(/\[(\d+)\]/g, '<sup><a href="#fn$1">$1</a></sup>'); }

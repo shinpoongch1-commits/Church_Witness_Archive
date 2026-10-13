@@ -5,9 +5,26 @@
   if (!T) return;
   function chip(x) {   /* 1009: 연혁·문헌 칩(g)도 세 번째 값에 사진 경로를 주면 누를 수 있음(회색 그대로) */
     if (typeof x === "string") return '<span class="yt-sub">' + x.slice(1) + "</span>";
-    if (x[0] === "p" || (x[0] === "g" && x[2])) return '<a href="#" class="ch ' + x[0] + ' go photo js-photo" data-src="' + x[2] + '">' + x[1] + "</a>";
+    if (x[0] === "p" || (x[0] === "g" && x[2])) return '<a href="#" class="ch ' + x[0] + ' go photo js-photo" data-src="' + x[2] + '"><span class="t">' + x[1] + "</span></a>";
     if (!x[2]) return '<span class="ch ' + x[0] + '">' + x[1] + "</span>";
     return '<a href="#" class="ch ' + x[0] + ' go js-card" data-who="' + x[2] + '" data-find="' + x[3] + '"><span class="t">' + x[1] + "</span></a>";
+  }
+  /* 1013 한 칸 안 정리: 연혁·문헌·사진은 원래 순서로 위에, 증언은 이름 가나다순(같은 사람은 원래 순서 유지)
+     같은 칸에 같은 이름이 둘 이상이면 이름은 한 번만 쓰고 칩을 묶음 (이름 = 칩 글의 " · " 앞, 예: "류우열 사모") */
+  function cell(list) {
+    var docs = list.filter(function (x) { return typeof x === "string" || x[0] !== "s" || !x[2]; });
+    var says = list.filter(function (x) { return typeof x !== "string" && x[0] === "s" && x[2]; });
+    function nm(x) { return x[1].split(" · ")[0]; }
+    says = says.map(function (x, i) { return [x, i]; }).sort(function (a, b) { return nm(a[0]).localeCompare(nm(b[0]), "ko") || a[1] - b[1]; }).map(function (a) { return a[0]; });
+    var h = docs.map(chip).join(""), i = 0;
+    while (i < says.length) {
+      var n = nm(says[i]), j = i;
+      while (j < says.length && nm(says[j]) === n) j++;
+      if (j - i > 1) h += '<div class="yt-who"><b>' + n + "</b>" + says.slice(i, j).map(function (x) { return chip([x[0], x[1].slice(n.length + 3), x[2], x[3]]); }).join("") + "</div>";
+      else h += chip(says[i]);
+      i = j;
+    }
+    return h;
   }
   /* 표: 격자에 칸마다 자리(grid-row/column)를 직접 줌 → 병합 칸(spans)은 여러 줄을 차지. 모바일은 같은 순서로 세로로 쌓임 */
   var Y = T.rows.map(function (r) { return r.y; }), sp = T.spans || [];
@@ -19,10 +36,10 @@
     r.c.forEach(function (c, i) {
       var g = sp.filter(function (s) { return s.col === i && Y.indexOf(s.from) <= k && k <= Y.indexOf(s.to); })[0];
       if (g) {
-        if (Y.indexOf(g.from) === k) h += '<div class="yt-c yt-span' + (g.mid ? " mid" : "") + (g.clamp ? " clamp" : "") + '" data-col="' + T.cols[i] + '"' + at(row, i + 2, Y.indexOf(g.to) - k + 1) + '><b class="yt-st">' + g.title + "</b>" + g.chips.map(chip).join("") + "</div>";
+        if (Y.indexOf(g.from) === k) h += '<div class="yt-c yt-span' + (g.mid ? " mid" : "") + (g.clamp ? " clamp" : "") + '" data-col="' + T.cols[i] + '"' + at(row, i + 2, Y.indexOf(g.to) - k + 1) + '><b class="yt-st">' + g.title + "</b>" + cell(g.chips) + "</div>";
         return;
       }
-      h += '<div class="yt-c' + (c.length ? "" : " empty") + '" data-col="' + T.cols[i] + '"' + at(row, i + 2) + ">" + c.map(chip).join("") + "</div>";
+      h += '<div class="yt-c' + (c.length ? "" : " empty") + '" data-col="' + T.cols[i] + '"' + at(row, i + 2) + ">" + cell(c) + "</div>";
     });
   });
   h += "</div>";
@@ -55,7 +72,7 @@
     }); });
     var m = '<div class="modal"><div class="modal-box card-box"><button class="modal-x" type="button" aria-label="닫기">×</button><div class="modal-body">' +
       '<div class="say"><a class="who js-modal" href="#" data-person="' + who + '">' + who + "</a>" +
-      (q ? '<p class="ask"><b>' + asker + "</b>: " + q + "</p>" : "") +
+      (q ? '<p class="ask"><b>' + S.view.ask(asker) + "</b>: " + q + "</p>" : "") +
       '<a class="quote js-modal" href="#" data-intvw="' + who + '" data-find="' + find + '">' + (a ? "“" + a + "”" : "질문 대목") + "<small>원문 보기 →</small></a></div></div></div></div>";
     document.body.insertAdjacentHTML("beforeend", m);
     document.body.classList.add("modal-open");
@@ -75,7 +92,7 @@
     var who = c.getAttribute("data-who"), find = c.getAttribute("data-find");
     if (window.INTVW && window.INTVW[who]) return card(who, find);
     var js = document.createElement("script");
-    js.src = S.source.intvw.replace("{name}", who);
+    js.src = S.source.intvw.replace("{name}", S.files[who] || who);   /* 1013: 영문 파일 이름 */
     js.onload = function () { if (window.INTVW && window.INTVW[who]) card(who, find); };
     document.head.appendChild(js);
   });

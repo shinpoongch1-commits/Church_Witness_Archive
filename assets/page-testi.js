@@ -1,4 +1,4 @@
-/* 증언 페이지 공통: 제목 → 증언 여러 개(질문 + 이름 + 증언 블록) (내용은 data/메뉴/하위.js의 window.PAGE, 예: data/sohn/loca.js)
+/* 증언 페이지 공통: 제목 → 증언 여러 개(질문 + 이름 + 증언 블록) (내용은 data/메뉴/하위.js의 window.PAGE, 예: data/son/loca.js)
    이름 → 인물 정보 모달, 증언 블록 → 인터뷰 원문 모달(해당 지점으로 이동)
    질문은 원고 자리 그대로 두고, 질문 하나 아래(다음 질문 전까지) 증언자를 이름 가나다순으로 정렬
    같은 증언자가 이어지면 이름은 한 번만, 블록만 이어 붙임
@@ -9,9 +9,9 @@
     return '<a class="quote js-modal" href="#" data-intvw="' + s.who + '" data-find="' + (s.find || "") + '">' + s.text +
       "<small>원문 보기 →</small></a>";
   }
-  function ask(t) { return '<p class="ask"><b>' + asker + "</b>: " + t + "</p>"; }
+  function ask(t) { return '<p class="ask"><b>' + window.SITE.view.ask(asker) + "</b>: " + t + "</p>"; }   // 1013 질문자 이름 → 인물 정보
   function who(s) {   // (1012) in: 다른 사람 원문에 실린 말(질문자 설명 등) → 이름은 누르지 않음
-    if (s.in) return '<span class="who">' + (s.label || s.who) + "</span>";
+    if (s.in && s.who !== window.SITE.asker) return '<span class="who">' + (s.label || s.who) + "</span>";
     return '<a class="who js-modal" href="#" data-person="' + s.who + '">' + (s.label || s.who) + "</a>";
   }
   function doc(s) {   // (1012) 문헌 블록: 이름(문헌 제목) → 원문(새 창), 블록 → 사진 크게
@@ -49,4 +49,6 @@
   }).join("") + (g ? "</details>" : "");
   document.getElementById("app").innerHTML =
     '<div class="page-head"><h1 class="eyebrow">' + D.title + "</h1>" + (D.lede ? '<p class="lede">' + D.lede + "</p>" : "") + (D.note ? '<p class="note">' + D.note + "</p>" : "") + "</div>" + secs;
+  var go = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));   // 1013 주소 끝 #id → 그 묶음을 펼치고 이동 (메인 '신풍교회의 뿌리' → shinpung_paik.html#jeong)
+  if (go) { if (go.tagName === "DETAILS") go.open = true; go.scrollIntoView(); }
 })();
