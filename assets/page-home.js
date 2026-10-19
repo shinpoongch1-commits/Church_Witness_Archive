@@ -1,5 +1,5 @@
 /* 메인 (1013 새로 작성, 내용은 data/site.js의 home)
-   첫 화면 → 만든 이 → 증언으로 살펴보는 사실(시기 + 카드) → 질문 2개 → 이어진 신앙 노선 */
+   첫 화면 → 만든 이 → 증언으로 살펴본 사실(시기 + 카드) → 질문 2개 → 이어진 신앙 노선 */
 (function () {
   var H = window.SITE.home;
   var scenes = H.scenes.map(function (c) {

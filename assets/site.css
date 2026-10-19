@@ -189,7 +189,7 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 
 /* 1001 추가: 증언 페이지 (page-testi.js) */
 .say+.say{margin-top:32px} /*한 제목 아래 증언 여러 개일 때 간격*/
-.ask{margin:0 0 16px;color:var(--soft);font-size:15px}
+.ask{margin:0 0 12px;color:var(--soft);font-size:16px} /*1019 질문 줄 글씨를 이름(16px)과 맞춤, 이름과 간격 12px*/
 .ask b{color:var(--ink);font-weight:600}
 .ask a,.doc-note a,.t-what a,.notes a{border-bottom:1px solid var(--line)}.ask a:hover,.doc-note a:hover,.t-what a:hover,.notes a:hover{border-color:var(--accent)} /*1013 질문자 이름·주소 링크*/
 .say+.ask{margin-top:32px} /*질문이 바뀔 때 간격*/
@@ -266,7 +266,7 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 .grp summary h2{margin:0;font-size:20px;color:var(--brown)}
 .grp .sec:last-child{border-bottom:0}
 .grp .desc{margin:10px 0 0}
-.grp .ask{margin:14px 0 0}
+.grp .ask{margin:14px 0 12px}.grp .say+.ask{margin-top:32px} /*1019 묶음 안: 질문~이름 12px, 앞 증언~다음 질문 32px (바깥과 같게)*/
 .desc{margin:0 0 20px;color:var(--soft);font-size:15px}
 .sec>.note{margin:24px 0 0;white-space:pre-line}
 .say .ask{margin:16px 0 0}
