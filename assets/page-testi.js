@@ -10,17 +10,18 @@
       "<small>원문 보기 →</small></a>";
   }
   function ask(t) { return '<p class="ask"><b>' + window.SITE.view.ask(asker) + "</b>: " + t + "</p>"; }   // 1013 질문자 이름 → 인물 정보
-  var seen = {};   // 1019: 약력은 그 페이지에서 이름이 처음 나올 때만 ('○○ 사모'처럼 다른 사람 이름(label)으로 보일 때는 붙이지 않음)
-  function brief(n, label) {
+  var seen = {};   // 1019: 약력(data/site.js brief)은 그 페이지에서 그 사람이 처음 나올 때만
+  function brief(n) {
     var b = (window.SITE.brief || {})[n];
-    if (label && label !== n) return "";
     if (!b || seen[n]) return "";
     seen[n] = 1;
     return '<span class="brief">' + b + "</span>";
   }
   function who(s) {   // (1012) in: 다른 사람 원문에 실린 말(질문자 설명 등) → 이름은 누르지 않음
-    if (s.in && s.who !== window.SITE.asker) return '<span class="who">' + (s.label || s.who) + "</span>" + brief(s.who, s.label);
-    return '<a class="who js-modal" href="#" data-person="' + s.who + '">' + (s.label || s.who) + "</a>" + brief(s.who, s.label);
+    var l = s.label || s.who, tail = "";   // 1019: '박창호 사모'처럼 이름 뒤에 붙은 말은 밑줄 없이, 약력은 박창호 것
+    if (l !== s.who && l.indexOf(s.who) === 0) { tail = '<span class="who-tail">' + l.slice(s.who.length) + "</span>"; l = s.who; }
+    if (s.in && s.who !== window.SITE.asker) return '<span class="who">' + l + "</span>" + tail + brief(s.who);
+    return '<a class="who js-modal" href="#" data-person="' + s.who + '">' + l + "</a>" + tail + brief(s.who);
   }
   function doc(s) {   // (1012) 문헌 블록: 이름(문헌 제목) → 원문(새 창), 블록 → 사진 크게
     return '<div class="say"><a class="who" href="' + s.link + '" target="_blank" rel="noopener">' + s.label + '</a><a class="quote" href="#" data-zoom="' + s.zoom + '">' +

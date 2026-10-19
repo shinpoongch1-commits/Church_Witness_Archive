@@ -196,6 +196,7 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 .say+.ask{margin-top:32px} /*질문이 바뀔 때 간격*/
 .who{color:var(--accent);font-weight:600;border-bottom:1px solid var(--accent)}
 .who:hover{background:var(--hover-bg)}
+.who-tail{color:var(--accent);font-weight:600} /*1019 '박창호 사모'의 ' 사모': 이름과 같은 글씨, 밑줄 없음*/
 .brief{margin-left:10px;font-size:13px;color:var(--soft)} /*1019 이름 옆 약력 한 줄 (data/site.js brief)*/
 .brief-big{margin:-8px 0 6px;font-size:16px;font-weight:600;color:var(--accent);line-height:1.6} /*1019 인물 소개: 이름 아래 약력 크게*/
 @media (max-width:760px){.brief{display:block;margin:4px 0 0}} /*1019 모바일: 약력은 이름 아래 줄로*/
