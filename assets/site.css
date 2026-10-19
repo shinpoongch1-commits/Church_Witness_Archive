@@ -189,9 +189,10 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 
 /* 1001 추가: 증언 페이지 (page-testi.js) */
 .say+.say{margin-top:32px} /*한 제목 아래 증언 여러 개일 때 간격*/
-.ask{margin:0 0 12px;color:var(--soft);font-size:16px} /*1019 질문 줄 글씨를 이름(16px)과 맞춤, 이름과 간격 12px*/
+.ask{margin:0 0 12px;color:var(--accent);font-size:16px} /*1019 질문 줄 글씨를 이름(16px)과 맞춤, 이름과 간격 12px*/
 .ask b{color:var(--ink);font-weight:600}
-.ask a,.doc-note a,.t-what a,.notes a{border-bottom:1px solid var(--line)}.ask a:hover,.doc-note a:hover,.t-what a:hover,.notes a:hover{border-color:var(--accent)} /*1013 질문자 이름·주소 링크*/
+.ask a{border-bottom:1px solid var(--accent)} /*1019 질문 줄 글자 진하게(B) + 질문자 이름 밑줄 남색*/
+.doc-note a,.t-what a,.notes a{border-bottom:1px solid var(--line)}.ask a:hover,.doc-note a:hover,.t-what a:hover,.notes a:hover{border-color:var(--accent)} /*1013 질문자 이름·주소 링크*/
 .say+.ask{margin-top:32px} /*질문이 바뀔 때 간격*/
 .who{color:var(--accent);font-weight:600;border-bottom:1px solid var(--accent)}
 .who:hover{background:var(--hover-bg)}
