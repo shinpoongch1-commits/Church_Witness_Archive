@@ -11,7 +11,7 @@ window.SITE = {
       /* 좌측 메뉴(side): 이 메뉴에 속한 페이지(data-page="jeong")에 나타남. href 없는 항목은 흐리게 표시 */
       side: [
         { title: "정양순 사모", href: "jeong.html", items: [{ name: "애양원", href: "jeong_aeyang.html" }, { name: "경제", href: "jeong_economy.html" } ] },
-        { title: "정양순 사모 개척", items: [{ name: "신앙 조력자", href: "jeong_supporter.html" }, { name: "사택위치", href: "jeong_loca.html" }, { name: "가정예배", href: "jeong_service.html" }, { name: "에피소드", href: "jeong_episodes.html" }] }
+        { title: "정양순 사모 개척", items: [{ name: "신앙조력자", href: "jeong_supporter.html" }, { name: "사택위치", href: "jeong_loca.html" }, { name: "가정예배", href: "jeong_service.html" }, { name: "에피소드", href: "jeong_episodes.html" }] }
       ] },
     { id: "seongkwang", name: "성광교회",           href: "seongkwang.html",
       side: [
@@ -21,7 +21,7 @@ window.SITE = {
       ] },
     { id: "shinpung", name: "신풍교회",            href: "shinpung.html",
       side: [
-        { title: "신풍교회", href: "shinpung.html", items: [{ name: "백영희 목사와 인연", href: "shinpung_paik.html" }, { name: "총공회 소속 변경", href: "shinpung_split.html" }] }
+        { title: "신풍교회", href: "shinpung.html", items: [{ name: "백영희 목사", href: "shinpung_paik.html" }, { name: "총공회 소속", href: "shinpung_split.html" }] }
       ] },
     /* 1013 연대기(timeline.html) 메뉴 삭제 */
     { id: "people", name: "인물·증언",            href: "people.html",
@@ -70,6 +70,24 @@ window.SITE = {
   people: { title: "인물 정보·증언", lede: "증언자와 질문자의 인적 사항과 신앙 걸음을 볼 수 있습니다." },
   /* 1013 질문자 이름: 질문 줄·원문 안내·인물 정보 참고에서 이 이름을 누르면 인물 정보(data/people/lee-youngin.js)가 열림 */
   asker: "이영인",
+  /* 1019 인물 약력 한 줄(소속 · 직함 · 행적): 증언 페이지 이름 옆(그 페이지에서 처음 나올 때) + 인물 소개 이름 아래에 크게. 이 한 곳만 고치면 두 곳이 함께 바뀜 */
+  brief: {
+    "강위상": "고신 소속, 성광교회 1대 부임, 남미 평생 선교, LA에서 종신",
+    "류우열": "구) 고신 소속 · 현) 통합 소속, 성광교회 3대 부임",
+    "문순금": "합동 정통 소속 목사, 애양원 총무과장 동생",
+    "박창호": "성암교회 2대 부임, 동산중앙교회 원로목사",
+    "손활인": "성암교회 1대 부임",
+    "심보라": "애양원 의무계장, 송도교회(고려파) 개척 참여",
+    "오동원": "성암교회 부임, 백영희 목사 노선 배움, 부산 서동에 개척 및 목회",
+    "유완종": "성광교회 교인, 남문교회 개척 조력자",
+    "이길수": "성광·신풍교회 교인, 1974년 분리 때 신풍교회에 남음",
+    "이영인": "질문자, 총공회 소속, 여수 신풍교회 목사",
+    "이진석": "성광교회 2대 부임",
+    "차병용": "애양원교회 교인, 영광동부교회 목사",
+    "차상희": "성암·성광교회 교인",
+    "차요한": "순천 남문교회 부임, 김현봉·백영희 노선 배움",
+    "차진후": "애양원 재무계장(약 12년), 율촌면장"
+  },
   /* footer: credit = 1013 모든 페이지 맨 아래 만든 이 한 줄 (이름·주소 링크는 <a>로 직접) */
   footer: { addr: "전남 여수 여순로 419-5", email: "pkist.net@gmail.com",
     credit: "구술 기록 · 여수 신풍교회 · 질문 <a class=\"js-modal\" href=\"#\" data-person=\"이영인\">이영인</a> 목사 · 총공회 목회연구소(<a href=\"https://pkist.net/\" target=\"_blank\" rel=\"noopener\">pkist.net</a>)" },

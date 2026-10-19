@@ -1,4 +1,4 @@
-/* 정양순 사모 — 신앙 조력자: 서귀덕 집사 (원고: 신풍 > files > c_intvw > jeong_info > af_suppoter_seo.docx)
+/* 정양순 사모 — 신앙조력자: 서귀덕 집사 (원고: 신풍 > files > c_intvw > jeong_info > af_suppoter_seo.docx)
    묶음 머리 = { group(번호 붙은 큰 제목, 눌러서 접고 펼침), desc(안내) }
    묶음 = { items: [ 증언, … ] }
    증언 = { ask(질문), who(자료 이름), label(화면 이름, 없으면 who), text(증언), find(원문에서 찾을 문구) }

@@ -1,11 +1,11 @@
-/* 신풍교회 — 백영희 목사와 인연 (원고: 드라이브 shpch_info > sp_paik.docx, 인용은 data/intvw 원문 기준)
+/* 신풍교회 — 백영희 목사 (원고: 드라이브 shpch_info > sp_paik.docx, 인용은 data/intvw 원문 기준)
    묶음 머리 = { group(큰 제목), desc(안내) } → 눌러서 접고 펼침(처음엔 모두 접힘)
    소제목 = { title, desc, items: [ 대화 세트, … ] } → 소제목 안 증언자는 이름 가나다순으로 자동 정렬
    문헌 블록 = { label, text, zoom(사진), link(원문 PDF) } → 이름 누르면 원문 PDF(새 창), 블록 누르면 사진
    대화 세트 = { who, set: [ { ask, text, find }, { note } ] } ← 같은 사람의 증언은 원고 순서대로 한 덩어리
    find는 인터뷰 원문(data/intvw/영문이름.js)에 그대로 있는 짧은 문구 */
 window.PAGE = {
-  title: "백영희 목사와 인연",
+  title: "백영희 목사",
   lede: "백영희 목사를 알게 된 배경에 관한 진술입니다.",
   asker: "이영인(질문자)",
   sections: [

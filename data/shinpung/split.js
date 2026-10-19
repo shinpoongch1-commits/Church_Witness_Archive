@@ -1,9 +1,9 @@
-/* 신풍교회 — 총공회 소속 변경 (원고: 드라이브 shpch_info > sp_split.docx, 인용은 data/intvw 원문 기준)
+/* 신풍교회 — 총공회 소속 (원고: 드라이브 shpch_info > sp_split.docx, 인용은 data/intvw 원문 기준)
    묶음 머리 = { group(큰 제목), desc(안내) } → 눌러서 접고 펼침(처음엔 모두 접힘)
    소제목 = { title, desc, items: [ 대화 세트, … ] } / 대화 세트 = { who, set: [ { ask, text, find } ] }
    find는 인터뷰 원문(data/intvw/영문이름.js)에 그대로 있는 짧은 문구 */
 window.PAGE = {
-  title: "총공회 소속 변경",
+  title: "총공회 소속",
   lede: "곽봉빈 목사 때 백영희 목사(예수교장로회 한국총공회) 노선으로 소속을 바꾸는 데 교인들이 모두 찬성했으나, 그 과정에서 생긴 문제로 우산 쪽 성광교회와 신풍교회로 나뉘게 된 생생한 진술입니다.",
   asker: "이영인(질문자)",
   sections: [

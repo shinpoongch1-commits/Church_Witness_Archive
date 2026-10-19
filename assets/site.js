@@ -80,7 +80,10 @@
   function me(t) { return url(ask(fn(t), cur)); }
   function person(d) {
     cur = d.name;
-    return "<h1>" + esc(d.name) + '</h1><p class="role-line">' + esc(d.group) + (d.recorded ? " · 녹취일: " + esc(d.recorded) : "") + "</p>" +
+    var b = (S.brief || {})[d.name];   /* 1019: 약력 한 줄(data/site.js brief)을 이름 아래 크게 */
+    return "<h1>" + esc(d.name) + "</h1>" + (b ? '<p class="brief-big">' + esc(b) + "</p>" : "") +
+      (b ? (d.recorded ? '<p class="role-line">녹취일: ' + esc(d.recorded) + "</p>" : "")   /* 1019: 약력이 있으면 group(직함)은 겹치므로 빼고 녹취일만 */
+         : '<p class="role-line">' + esc(d.group) + (d.recorded ? " · 녹취일: " + esc(d.recorded) : "") + "</p>") +
       '<p class="lede">' + esc(d.lede) + '</p><h2>신앙 걸음</h2><ul class="timeline-list">' +
       d.steps.map(step).join("") + "</ul>" +
       (d.notes.length ? '<h2>참고</h2><div class="notes">' + d.notes.map(function (n) { return "<p>" + me(n) + "</p>"; }).join("") + "</div>" : "");
