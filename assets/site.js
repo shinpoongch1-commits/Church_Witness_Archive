@@ -7,8 +7,8 @@
   document.body.insertAdjacentHTML("afterbegin",
     '<div class="head"><div class="wrap"><header class="top"><nav>' + nav + "</nav></header></div></div>");
   document.body.insertAdjacentHTML("beforeend",
-    '<footer>' + (S.footer.credit ? '<p class="credit">' + S.footer.credit + "</p>" : "") + '주소 : ' + S.footer.addr + '<span class="sep">|</span>대표 이메일 : <a href="mailto:' +
-    S.footer.email + '">' + S.footer.email + "</a></footer>");
+    '<footer>' + (S.footer.credit ? '<p class="credit">' + S.footer.credit + "</p>" : "") + '<span class="ft">주소 : ' + S.footer.addr + '</span><span class="sep">|</span><span class="ft">대표 이메일 : <a href="mailto:' +
+    S.footer.email + '">' + S.footer.email + "</a></span></footer>");   /* 1023 ft: 항목 이름과 값이 떨어지지 않게 */
   /* 0930 추가: 이미지 크게 보기 (class="zoom" 이미지나 data-zoom 링크를 누르면 크게, 아무 데나 누르면 닫힘) */
   document.addEventListener("click", function (e) {
     var box = document.querySelector(".zoom-box");
@@ -80,9 +80,15 @@
   function me(t) { return url(ask(fn(t), cur)); }
   function person(d) {
     cur = d.name;
-    var b = (S.brief || {})[d.name];   /* 1019: 약력 한 줄(data/site.js brief)을 이름 아래 크게 */
-    return "<h1>" + esc(d.name) + "</h1>" + (b ? '<p class="brief-big">' + esc(b) + "</p>" : "") +
-      (b ? (d.recorded ? '<p class="role-line">녹취일: ' + esc(d.recorded) + "</p>" : "")   /* 1019: 약력이 있으면 group(직함)은 겹치므로 빼고 녹취일만 */
+    var b = (S.brief || {})[d.name.replace(/\(.*\)$/, "")];   /* 1019: 약력 한 줄(data/site.js brief)을 이름 아래 크게 (1023: "차요한(차주완)"처럼 괄호 붙은 이름도 찾음) */
+    var rec = "";   /* 1023: 녹취일은 약력 끝에 같은 줄로. 날짜 뒤 괄호 설명은 쉼표로(괄호 겹침 방지), "(녹취일: 날짜"·각 덩어리는 끊기지 않게 */
+    if (d.recorded) {
+      var part = esc(d.recorded).replace(/\(([^)]*)\)/g, ", $1").split(/( \/ |, )/);
+      part[0] = "(녹취일: " + part[0]; part[part.length - 1] += ")";
+      rec = '<span class="rec">' + part.map(function (t, i) { return i % 2 ? t : '<span class="nw">' + t + "</span>"; }).join("") + "</span>";
+    }
+    return "<h1>" + esc(d.name) + "</h1>" +
+      (b ? '<p class="brief-big">' + esc(b) + (rec ? " " + rec : "") + "</p>"   /* 1019: 약력이 있으면 group(직함)은 겹치므로 뺌 */
          : '<p class="role-line">' + esc(d.group) + (d.recorded ? " · 녹취일: " + esc(d.recorded) : "") + "</p>") +
       '<p class="lede">' + esc(d.lede) + '</p><h2>신앙 걸음</h2><ul class="timeline-list">' +
       d.steps.map(step).join("") + "</ul>" +

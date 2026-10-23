@@ -13,7 +13,7 @@
     return '<a href="' + f.href + '"><b>' + f.name + "</b><small>" + f.desc + "</small></a>";
   }).join("<i>→</i>");
   document.getElementById("app").innerHTML =
-    '<div class="hero"><div><p class="eyebrow">' + H.eyebrow + "</p><h1>" + H.title.split(", ").map(function (t) { return '<span class="nw">' + t + "</span>"; }).join(", ") + '</h1><p class="motto">' + H.motto + '</p><p class="lede">' + H.lede +
+    '<div class="hero"><div><p class="eyebrow">' + H.eyebrow + "</p><h1>" + H.title.split(", ").map(function (t) { return '<span class="nw">' + t + "</span>"; }).join(", ") + '</h1><p class="motto">' + H.motto.split("<br>").map(function (t) { return "<span>" + t + "</span>"; }).join(" ") + '</p><p class="lede">' + H.lede +
     '</p></div><figure><img src="' + H.photo + '" alt="' + H.photoCaption + '"><figcaption>' + H.photoCaption + "</figcaption></figure></div>" +
     '<p class="about">' + H.about + "</p>" +
     '<section class="blk"><h2>' + H.scenesTitle + '</h2><p class="sub">' + H.scenesLede + '</p><ol class="scenes">' + scenes + "</ol></section>" +

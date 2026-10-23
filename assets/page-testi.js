@@ -10,7 +10,7 @@
       "<small>원문 보기 →</small></a>";
   }
   function ask(t) { return '<p class="ask"><b>' + window.SITE.view.ask(asker) + "</b>: " + t + "</p>"; }   // 1013 질문자 이름 → 인물 정보
-  var seen = {};   // 1019: 약력(data/site.js brief)은 그 페이지에서 그 사람이 처음 나올 때만
+  var seen = {};   // 1019: 약력(data/site.js brief)은 그 사람이 처음 나올 때만 (1023: 묶음이 있으면 묶음마다)
   function brief(n) {
     var b = (window.SITE.brief || {})[n];
     if (!b || seen[n]) return "";
@@ -27,11 +27,14 @@
     return '<div class="say"><a class="who" href="' + s.link + '" target="_blank" rel="noopener">' + s.label + '</a><a class="quote" href="#" data-zoom="' + s.zoom + '">' +
       s.text + "<small>사진 보기 →</small></a></div>";
   }
-  function set(s) {   // 대화 세트: 질문과 답이 오간 순서 그대로 한 덩어리
-    return '<div class="say">' + who(s) + s.set.map(function (x) {
-      if (x.note) return '<p class="note">' + x.note + "</p>";
-      return (x.ask ? ask(x.ask) : "") + quote({ who: s.in || s.who, text: x.text, find: x.find });
-    }).join("") + "</div>";
+  function set(s) {   // 대화 세트: 원고 순서 그대로. 1023: 다른 증언과 같은 모양으로 — 질문 줄 → 이름 → 증언 블록 (새 질문이 나오면 이름을 다시 씀)
+    var h = "", open = false;
+    s.set.forEach(function (x) {
+      if (x.ask) { if (open) { h += "</div>"; open = false; } h += ask(x.ask); }
+      if (!open) { h += '<div class="say">' + who(s); open = true; }
+      h += x.note ? '<p class="note">' + x.note + "</p>" : quote({ who: s.in || s.who, text: x.text, find: x.find });
+    });
+    return h + (open ? "</div>" : "");
   }
   function items(list) {
     var groups = [], h = "";
@@ -51,6 +54,7 @@
   }
   var g = 0;   // 묶음 머리가 있으면 접기·펼치기: 처음엔 모두 접힘
   var secs = D.sections.map(function (s) {
+    if (s.group) seen = {};   // 1023: 접기·펼치기 묶음마다 따로 셈 — 아래 묶음만 펼쳐 봐도 그 묶음에서 처음 나온 사람에게 약력이 보이게
     if (s.group) return (g++ ? "</details>" : "") + '<details class="grp"' + (s.id ? ' id="' + s.id + '"' : "") + '><summary><h2>' + s.group + "</h2></summary>" +
       (s.desc ? '<p class="desc">' + s.desc + "</p>" : "") + (s.ask ? ask(s.ask) : "");
     return '<section class="sec"' + (s.id ? ' id="' + s.id + '"' : "") + ">" + (s.title ? "<h2>" + s.title + "</h2>" : "") + (s.desc ? '<p class="desc">' + s.desc + "</p>" : "") +

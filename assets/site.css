@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600&display=swap'); /*글씨체 변경 위치 추가*/
 :root{
   /* 1013 색 전환: 세피아 → 네이비·쿨그레이. 색은 여기(와 아래 '보기 전환·칩' :root)에서만 고침 */
-  --bg:#f3f4f6; --ink:#0f172a; --soft:#475569; --line:#cbd5e1; --accent:#1e293b;   /* 바탕 / 글자 / 흐린 글자 / 선 / 강조(활성·hover) */
+  --bg:#f3f4f6; --ink:#0f172a; --soft:#3e4b5e; --soft-2:#475569;   /* 1023 흐린 글자 두 단계: --soft 읽는 글(소개글·설명·메뉴) / --soft-2 작은 표시 글(약력·사진 설명·원문 보기·footer) */ --line:#cbd5e1; --accent:#1e293b;   /* 바탕 / 글자 / 흐린 글자(1023 #475569→#334155 한 단계 진하게) / 선 / 강조(활성·hover) */
   --font:"Noto Serif KR",serif;
   --card:#ffffff; --card-on:#e2e8f0;      /* 카드 바탕 / 마우스 올림·현재 위치 바탕 */
   --brown:#1e293b; --off:#94a3b8;         /* 페이지 제목(이름은 그대로 둠) / 원고 없는 메뉴 항목 */
@@ -13,7 +13,7 @@
   --c-us-bg:#dbe4f0; --c-us-ink:#1e3a5f; --c-jp-bg:#e5e7eb; --c-jp-ink:#374151; --c-mg-bg:#dde8e4; --c-mg-ink:#2f5446;   /* 손양원 표 운영 주체 칩: 미국 / 일본 / 미군정 */
   --shadow:0 4px 14px rgba(15,23,42,.08); --shadow-2:0 20px 60px rgba(15,23,42,.35);   /* 카드 마우스 올림 / 모달 그림자 */
   --hover-bg:#e3e9f2; --hover-bg-2:#d3dce8; --on-dark-line:rgba(255,255,255,.35);   /* 1013 마우스 올림: 흰 카드 → 옅은 남색 / 이미 옅은 바탕 → 한 단계 진하게 */
-  --photo-tone:grayscale(.45); --hero-photo:316px;   /* 메인 사진 폭: 사진 위가 머리글, 아래가 소개글 끝과 맞도록 */            /* 메인 돌 예배당 사진: 세피아를 바탕톤에 살짝 맞춤 */
+  --photo-tone:grayscale(.45); --hero-photo:272px;   /* 메인 사진 폭: 사진 위가 머리글, 아래가 소개글 끝과 맞도록 */            /* 메인 돌 예배당 사진: 세피아를 바탕톤에 살짝 맞춤 */
   /*--font:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",sans-serif; 0929 글씨체 변경*/
 }
 
@@ -25,9 +25,9 @@ a{color:inherit;text-decoration:none}
 /* header */
 .top{display:flex;justify-content:space-between;align-items:baseline;padding-top:28px;padding-bottom:22px;border-bottom:1px solid var(--line)}
 /*nav{display:flex;gap:28px;font-size:15px;color:var(--soft)} 0929 삭제*/
-nav{display:flex;flex:1;justify-content:space-between;gap:28px;font-size:15px;color:var(--soft)} /*0929 변경*/
+nav{display:flex;flex:1;justify-content:space-between;gap:28px;font-size:16px;color:var(--soft)} /*0929 변경, 1023 15→16px*/
 nav a.on{color:var(--ink);font-weight:600;border-bottom:2px solid var(--accent);padding-bottom:4px}
-nav a:not(.on):hover{color:var(--ink);border-bottom:2px solid var(--line);padding-bottom:4px} /*1013 상단 메뉴 마우스 올림*/
+nav a{position:relative}nav a:not(.on):hover{color:var(--ink)}nav a:not(.on):hover::before{content:"";position:absolute;inset:-6px -10px;z-index:-1;border-radius:6px;background:var(--hover-bg-2)} /*1013 상단 메뉴 마우스 올림, 1023 좌측 메뉴처럼 옅은 남색 바탕(글자 자리는 그대로)*/
 .head{position:sticky;top:0;z-index:10;background:var(--bg)} /* 0929 추가, 0930 괄호 수정 */
 html{scroll-padding-top:90px} /* 0929 추가*/ 
 
@@ -36,16 +36,18 @@ html{scroll-padding-top:90px} /* 0929 추가*/
 .eyebrow{margin:0 0 12px;color:var(--brown);font-weight:600;font-size:14pt} /*0929 구술로 사료로 되짚어보는.. */
 h1{margin:0 0 20px;font-size:20pt;font-weight:700;line-height:1.4}/*font-size:16pt --> 20pt 정양순 사모의.. */
 .lede{margin:0;max-width:44ch;color:var(--soft);font-size:14pt} 
-.hero h1{margin-bottom:10px;font-size:24pt}
-.hero .motto{margin:0 0 22px;font-size:17px;font-weight:600;color:var(--accent);line-height:1.6}
-.hero .lede{max-width:none}
+.hero .eyebrow{margin:0 0 10px;font-size:16px;letter-spacing:.08em;color:var(--soft)} /*1023 메인 머리글: 분류 표시처럼 작게 (다른 페이지 제목 .eyebrow는 그대로)*/
+.hero h1{margin:0 0 14px;font-size:32px;line-height:1.3}
+.hero .motto{margin:0 0 22px;font-size:18px;font-weight:600;color:var(--accent);line-height:1.6}.hero .motto span{white-space:nowrap} /*1023 PC 한 줄, 좁으면 '위해' 뒤에서만 줄바꿈*/
+.hero .lede{max-width:none;font-size:17px;line-height:1.85} /*1023 머리글14 < 소개글17 < 강조18 < 제목32*/
+@media (max-width:1000px){.hero{grid-template-columns:1fr;gap:28px}.hero figure{max-width:420px}} /*1023 태블릿 폭: 글이 길어져 사진과 높이가 어긋나므로 휴대폰처럼 글 → 사진 순서로*/
 .hero h1 .nw{white-space:nowrap} /*1013 제목은 쉼표에서만 줄바꿈('한 길’'이 떨어지지 않게)*/
 .hero img{filter:var(--photo-tone)}
 figure{margin:0}
 figure img{width:100%;display:block;border:1px solid var(--line)}
-figcaption{margin-top:8px;font-size:13px;color:var(--soft);text-align:center}
+figcaption{margin-top:8px;font-size:13px;color:var(--soft-2);text-align:center}
 .about{margin:0;padding:28px 0;border-bottom:1px solid var(--line);color:var(--soft);font-size:14px;line-height:1.85}
-.about a,.credit a{color:var(--ink);border-bottom:1px solid var(--line)}.about a:hover,.credit a:hover{border-color:var(--accent)}
+.about a,.credit a,footer a{color:var(--ink);border-bottom:1px solid var(--accent)} /*1023 링크 밑줄 남색으로 눈에 띄게*/.about a:hover,.credit a:hover{border-color:var(--accent)}
 .blk{padding:44px 0;border-bottom:1px solid var(--line)}.blk.last{border-bottom:0}
 .blk h2{margin:0 0 6px;font-size:18px}.blk .sub{margin:0 0 22px;color:var(--soft);font-size:15px}
 /* 증언으로 살펴보는 사실: 왼쪽 시기 + 선·점 + 카드 */
@@ -53,7 +55,7 @@ figcaption{margin-top:8px;font-size:13px;color:var(--soft);text-align:center}
 .scenes li{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:center;position:relative;padding-bottom:16px}
 .scenes li:before{content:"";position:absolute;left:162px;top:0;bottom:0;border-left:1px solid var(--line)}
 .scenes .when{text-align:right;font-weight:600;color:var(--accent);font-size:15px;line-height:1.4}
-.scenes .when small{display:block;font-weight:400;color:var(--soft);font-size:12px}
+.scenes .when small{display:block;font-weight:400;color:var(--soft-2);font-size:12px}
 .card{position:relative;min-width:0;display:flex;flex-direction:column;margin-left:12px;padding:22px 20px 18px;background:var(--card);border:1px solid var(--line);border-radius:4px;transition:border-color .2s,box-shadow .2s}
 .scenes li:after{content:"";position:absolute;left:157px;top:calc((100% - 16px) / 2 - 5px);width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)} /*1013 점은 선 위, 카드 가운데 높이*/
 .card strong{font-size:18px;font-weight:700;line-height:1.4}
@@ -74,8 +76,10 @@ figcaption{margin-top:8px;font-size:13px;color:var(--soft);text-align:center}
 
 
 /* footer */
-footer{padding:22px 20px 28px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--soft)}
+footer{padding:22px 20px 28px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--soft-2)}
 footer .sep{margin:0 10px;color:var(--line)}
+footer .ft{white-space:nowrap} /*1023 '대표 이메일 :'과 주소가 따로 떨어지지 않게*/
+@media (max-width:760px){footer .sep{display:none}footer .ft{display:block}} /*1023 휴대폰: 주소·이메일 한 줄씩*/
 footer .credit{margin:0 0 6px} /*1013 모든 페이지 만든 이 한 줄*/
 /* 0929 추가:  손양원과 애양원 */
 .page-head{padding:48px 0 32px;border-bottom:1px solid var(--line)}
@@ -100,7 +104,7 @@ footer .credit{margin:0 0 6px} /*1013 모든 페이지 만든 이 한 줄*/
 .chip.tr{border:1px solid var(--accent);color:var(--accent)}
 .tbl td.son{background:var(--mark);white-space:nowrap}
 .tbl td.son strong{display:block;color:var(--accent)}
-.tbl td.son span{font-size:13px;color:var(--soft)}
+.tbl td.son span{font-size:13px;color:var(--soft-2)}
 .tbl td.ev ul{list-style:none;margin:0;padding:0}
 .tbl td.ev li{margin-bottom:6px;color:var(--ev-ink)}
 .tbl td.ev li:last-child{margin-bottom:0}
@@ -110,7 +114,7 @@ footer .credit{margin:0 0 6px} /*1013 모든 페이지 만든 이 한 줄*/
 .tbl-m .m-son{margin:18px 0 8px;padding:8px 14px;background:var(--card-on);border-radius:6px}
 .tbl-m .m-son:first-child{margin-top:0}
 .tbl-m .m-son strong{display:block;color:var(--accent);font-size:14px}
-.tbl-m .m-son span{font-size:13px;color:var(--soft)}
+.tbl-m .m-son span{font-size:13px;color:var(--soft-2)}
 .tbl-m .m-row{margin-top:8px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:6px;font-size:14px;line-height:1.7}
 .tbl-m .m-row.in{border-left:3px solid var(--accent)}
 .tbl-m .m-period{margin-right:8px;font-size:15px}
@@ -174,7 +178,10 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
   nav a{justify-self:start;white-space:nowrap}nav a:nth-child(6){grid-column:2}
   .top{padding-top:16px;padding-bottom:12px} /*1013 모바일: 메뉴~머리글 간격 줄임*/
   .hero{grid-template-columns:1fr;gap:28px;padding:20px 0 32px}
-  .eyebrow{margin-bottom:6px}.hero h1{font-size:22pt}
+  .eyebrow{margin-bottom:6px}.hero h1{font-size:26px}.hero .motto{font-size:17px}.hero .lede{font-size:16px} /*1023 휴대폰 메인 글자*/
+  nav{font-size:15px} /*1023 휴대폰 메뉴는 15px 유지(4칸 격자 폭)*/
+  .card span{font-size:14px}.qbox span{font-size:16px}.about{font-size:15px} /*1023 휴대폰 가독성: 본문 16px 기준*/
+  .who,footer a{position:relative}.who::after,footer a::after{content:"";position:absolute;inset:-8px -6px} /*1023 누르는 영역만 넓힘(보이는 모양은 그대로)*/
   .scenes li{grid-template-columns:1fr;gap:6px;padding-bottom:20px}.scenes li:before,.scenes li:after{display:none}.scenes .when{padding:0;text-align:left;font-size:14px}.scenes .when small{display:inline;margin-left:6px}.card{margin-left:0} /*1013 메인 모바일: 시기를 카드 위로*/
   .qs{grid-template-columns:1fr}
   .flow{flex-direction:column;align-items:stretch}.flow i{text-align:center;line-height:1}
@@ -183,9 +190,9 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
   .with-side{grid-template-columns:1fr;gap:0} /*0930 좌측 메뉴 모바일*/
   .side{position:static;padding:16px 0 0;display:none} /*0930 모바일: 목차 버튼 누를 때만 보임*/
   .side-open .side{display:block}
-  .side-btn{display:block;margin-top:20px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:4px;font:600 14px var(--font);color:var(--ink);text-align:left}
+  .side-btn{display:block;min-height:44px;margin-top:20px;padding:10px 14px;background:var(--card);border:1px solid var(--line);border-radius:4px;font:600 14px var(--font);color:var(--ink);text-align:left}
 }
-@media (max-width:350px){nav{font-size:14px}} /*1013 아주 좁은 휴대폰: 메뉴 4칸이 한 줄에 들어가게*/
+@media (max-width:350px){nav{font-size:14px;column-gap:4px}} /*1013 아주 좁은 휴대폰: 메뉴 4칸이 한 줄에 들어가게*/
 
 /* 1001 추가: 증언 페이지 (page-testi.js) */
 .say+.say{margin-top:32px} /*한 제목 아래 증언 여러 개일 때 간격*/
@@ -197,12 +204,14 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 .who{color:var(--accent);font-weight:600;border-bottom:1px solid var(--accent)}
 .who:hover{background:var(--hover-bg)}
 .who-tail{color:var(--accent);font-weight:600} /*1019 '박창호 사모'의 ' 사모': 이름과 같은 글씨, 밑줄 없음*/
-.brief{margin-left:10px;font-size:13px;color:var(--soft)} /*1019 이름 옆 약력 한 줄 (data/site.js brief)*/
-.brief-big{margin:-8px 0 6px;font-size:16px;font-weight:600;color:var(--accent);line-height:1.6} /*1019 인물 소개: 이름 아래 약력 크게*/
+.brief{margin-left:10px;font-size:13px;color:var(--soft-2)} /*1019 이름 옆 약력 한 줄 (data/site.js brief)*/
+.brief-big{margin:-8px 0 14px;font-size:16px;font-weight:600;color:var(--accent);line-height:1.6} /*1019 인물 소개: 이름 아래 약력 크게*/
+.brief-big .rec .nw{white-space:nowrap}.brief-big .rec{font-size:16px;font-weight:400;color:var(--soft-2)} /*1023 약력 끝 녹취일: 보통 굵기·옅은 회색, 줄이 넘어가도 한 덩어리*/
 @media (max-width:760px){.brief{display:block;margin:4px 0 0}} /*1019 모바일: 약력은 이름 아래 줄로*/
 .quote{display:block;margin:10px 0 0;padding:14px 18px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-size:15px;line-height:1.85;transition:background .2s,border-color .2s}
 .quote:hover{background:var(--hover-bg);border-color:var(--accent);border-left-color:var(--accent)}
-.quote small{display:block;margin-top:8px;font-size:12px;color:var(--soft)}
+.quote small{display:block;margin-top:8px;font-size:12px;color:var(--soft-2)}
+@media (max-width:760px){.quote{font-size:16px}.quote small{font-size:13px}} /*1023 휴대폰 증언 상자 글 16px (위 .quote 다음에 와야 적용됨)*/
 .quote:hover small{color:var(--accent)}
 .quote+.quote{margin-top:8px} /*같은 증언자 연속 블록 간격*/
 
@@ -215,7 +224,7 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 .modal-body h1{margin:0 0 10px;font-size:24px}
 .modal-body h2{margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line);font-size:17px}
 .modal-body .sec-num{margin-right:4px;color:var(--accent)}
-.modal-body .role-line{margin:0 0 12px;font-size:13px;color:var(--soft)}
+.modal-body .role-line{margin:0 0 12px;font-size:13px;color:var(--soft-2)}
 .modal-body .doc-note{margin:0 0 8px;padding:12px 16px;background:var(--card);border:1px solid var(--line);border-radius:4px;font-size:13px;color:var(--soft)}
 .modal-body .lede{max-width:none;margin:0 0 28px;font-size:15px}
 .modal-body p.q,.modal-body p.a{margin:0 0 8px;padding:2px 6px;border-radius:4px}
@@ -239,7 +248,7 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 .modal-body .t-pt{display:block;position:relative;margin-top:4px;padding-left:14px;font-size:13.5px;color:var(--t-pt);line-height:1.7}
 .modal-body .t-pt::before{content:"•";position:absolute;left:2px}
 .modal-body sup{margin-left:1px;color:var(--accent);font-size:11px}
-.modal-body .notes p{margin:0 0 8px;font-size:13px;color:var(--soft)}
+.modal-body .notes p{margin:0 0 8px;font-size:13px;color:var(--soft-2)}
 .modal-open{overflow:hidden}
 @media (max-width:760px){
   .modal{padding:0}
@@ -261,7 +270,7 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 .grp{border-bottom:1px solid var(--line)}
 .grp summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:28px 0;cursor:pointer;list-style:none}
 .grp summary::-webkit-details-marker{display:none}
-.grp summary::after{content:"펼치기 +";flex-shrink:0;font-size:13px;color:var(--soft)}
+.grp summary::after{content:"펼치기 +";flex-shrink:0;font-size:13px;color:var(--soft-2)}
 .grp[open] summary::after{content:"접기 −"}
 .grp summary:hover h2,.grp summary:hover::after{color:var(--accent)}.grp summary:hover::after{font-weight:600} /*1013 접기 제목 마우스 올림*/
 .grp[open] summary{padding-bottom:0}
@@ -280,9 +289,9 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
 .yt>*{padding:10px 0;border-top:1px solid var(--line);min-width:0}
 .yt-h{color:var(--soft);font-size:13px;font-weight:600;border-top:0}
 .yt-y b{display:block;font-size:15px}
-.yt-y small{display:block;font-size:11px;color:var(--soft);line-height:1.4}
+.yt-y small{display:block;font-size:11px;color:var(--soft-2);line-height:1.4}
 .yt-c{display:flex;flex-direction:column;align-items:flex-start;gap:5px}
-.yt-sub{font-size:11px;color:var(--soft)}
+.yt-sub{font-size:11px;color:var(--soft-2)}
 .yt-lg{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
 .card-box{height:auto;max-height:88vh}
 @media (max-width:640px){
@@ -290,7 +299,7 @@ a.o-box:hover{background:var(--ev-ink);box-shadow:var(--shadow)}
   .yt-h,.yt-c.empty,.yt>span.yt-y{display:none}
   .yt-y{padding-top:18px}
   .yt-c{border-top:0;padding:4px 0 8px 10px;border-left:2px solid var(--line)}
-  .yt-c::before{content:attr(data-col);font-size:11px;color:var(--soft)}
+  .yt-c::before{content:attr(data-col);font-size:11px;color:var(--soft-2)}
   .card-box{height:100%;max-height:none}
 }
 details.grp[id]{scroll-margin-top:120px}
